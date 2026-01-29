@@ -1,0 +1,170 @@
+header {
+    background: linear-gradient(120deg, rgba(11, 19, 63, 0.95), rgba(33, 13, 66, 0.8));
+    padding: 30px 40px 20px;
+    border-bottom: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(242, 84, 212, 0.4), transparent 55%);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.header-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 1;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo img {
+    width: 82px;
+    height: 82px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-text span {
+    font-family: "Snowburst One", cursive;
+    font-size: 1.7rem;
+    letter-spacing: 0.05em;
+}
+
+.logo-text small {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex: 1;
+}
+
+.category-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--frost);
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    transition: border 0.2s ease, transform 0.2s ease;
+}
+
+.category-btn:hover {
+    border-color: var(--aurora-cyan);
+    transform: translateY(-1px);
+}
+
+.countdown-panel {
+    min-width: 230px;
+    text-align: right;
+}
+
+.countdown-panel p {
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    font-size: 0.7rem;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.countdown-timer {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    align-items: center;
+    padding: 20px 0 0;
+}
+
+.hero-copy h1 {
+    font-family: "Snowburst One", cursive;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.hero-copy p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(120deg, var(--aurora-cyan), var(--aurora-magenta));
+    color: #040714;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 340px;
+    justify-self: end;
+}
+
+.filters {
+    padding: 16px 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+}
+
+.filters a {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+}
+
+.filters a:hover {
+    color: var(--frost);
+}
+
+.filters a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.aurora-header.compact {
+    padding-bottom: 10px;
+}

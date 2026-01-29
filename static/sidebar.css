@@ -1,0 +1,71 @@
+.login-box,
+.user-box,
+.ad-box,
+.profile-box,
+.resolution-card,
+.countdown-card {
+    background: rgba(8, 14, 46, 0.85);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    margin-bottom: 24px;
+}
+
+.login-box h3,
+.user-box h3,
+.resolution-card h3,
+.countdown-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    color: var(--frost);
+}
+
+.login-box input {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.user-box p {
+    margin-bottom: 12px;
+}
+
+.user-box a {
+    color: var(--aurora-cyan);
+    margin-right: 8px;
+}
+
+.resolution-card p,
+.countdown-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
+
+.countdown-card strong {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-top: 8px;
+}
+
+#mini-countdown {
+    display: inline-flex;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.ad-box {
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.ad-box img {
+    width: 100%;
+    display: block;
+}
+
+.ad-box p {
+    padding: 16px 22px 22px;
+    color: rgba(255, 255, 255, 0.7);
+}
+

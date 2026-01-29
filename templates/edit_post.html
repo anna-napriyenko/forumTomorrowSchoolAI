@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать пост • Polar Lights 2026</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <script>
+        window.userRole = "{{.Role}}";
+    </script>
+    <script src="/static/script.js" defer></script>
+</head>
+<body class="aurora-body">
+    <div class="site-container">
+        <header class="aurora-header compact">
+            <div class="header-container">
+                <div class="header-top">
+                    <a href="/" class="logo">
+                        <img src="/static/images/logo.png" alt="Polar Lights Forum 2026">
+                        <div class="logo-text">
+                            <span>Polar Lights</span>
+                            <small>New Year 2026</small>
+                        </div>
+                    </a>
+                    <div class="categories">
+                        <a href="/?category=news" class="category-btn">Polar News</a>
+                        <a href="/?category=life" class="category-btn">Traditions & Hearth</a>
+                        <a href="/?category=auto" class="category-btn">Winter Travel</a>
+                        <a href="/?category=creative" class="category-btn">DIY Décor</a>
+                        <a href="/?category=gadgets" class="category-btn">Gift Gadgets</a>
+                        <a href="/?category=science" class="category-btn">Snow Science</a>
+                        <a href="/?category=games" class="category-btn">Party Games</a>
+                        <a href="/?category=other" class="category-btn">Wish Wall</a>
+                    </div>
+                    <div class="countdown-panel">
+                        <p>до Нового года</p>
+                        <div id="countdown-timer" class="countdown-timer">00d • 00h • 00m • 00s</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="filters">
+            <a href="/?filter=new" class="{{if eq .Filter "new"}}active{{end}}">Fresh Sparks</a>
+            <a href="/?filter=best" class="{{if eq .Filter "best"}}active{{end}}">Firework Hits</a>
+            {{if .IsAuthenticated}}
+                <a href="/?filter=my" class="{{if eq .Filter "my"}}active{{end}}">My Rituals</a>
+                <a href="/?filter=liked" class="{{if eq .Filter "liked"}}active{{end}}">Sparkles I Loved</a>
+                <a href="/?filter=commented" class="{{if eq .Filter "commented"}}active{{end}}">Chats I Warmed</a>
+            {{end}}
+        </div>
+        <main>
+            <div class="main-container">
+                <section class="left-column">
+                    <div class="edit-post-box">
+                        <h3>Обновите свою историю</h3>
+                        {{if .ErrorMessage}}
+                            <p class="message">{{.ErrorMessage}}</p>
+                        {{end}}
+                        <form method="POST" action="/edit-post">
+                            <input type="hidden" name="post_id" value="{{.Post.ID}}">
+                            <input type="text" name="title" value="{{.Post.Title}}" required>
+                            <textarea name="content" required>{{.Post.Content}}</textarea>
+                            <input type="url" name="image_url" value="{{.Post.ImageURL}}" placeholder="Ссылка на изображение">
+                            <select name="categories" multiple>
+                                <option value="news" {{if eq .Post.Category "news"}}selected{{end}}>Polar News</option>
+                                <option value="life" {{if eq .Post.Category "life"}}selected{{end}}>Traditions & Hearth</option>
+                                <option value="auto" {{if eq .Post.Category "auto"}}selected{{end}}>Winter Travel</option>
+                                <option value="creative" {{if eq .Post.Category "creative"}}selected{{end}}>DIY Décor</option>
+                                <option value="gadgets" {{if eq .Post.Category "gadgets"}}selected{{end}}>Gift Gadgets</option>
+                                <option value="science" {{if eq .Post.Category "science"}}selected{{end}}>Snow Science</option>
+                                <option value="games" {{if eq .Post.Category "games"}}selected{{end}}>Party Games</option>
+                                <option value="other" {{if eq .Post.Category "other"}}selected{{end}}>Wish Wall</option>
+                            </select>
+                            <div class="button-group">
+                                <button type="submit">Сохранить</button>
+                                <a href="/" class="back-btn">Назад на главную</a>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                <section class="right-column">
+                    {{if not .IsAuthenticated}}
+                        <div class="login-box">
+                            <h3>Войти в Polar Lights</h3>
+                            {{if .ErrorMessage}}
+                                <p class="message">{{.ErrorMessage}}</p>
+                            {{end}}
+                            <form method="POST" action="/login">
+                                <input type="email" name="email" placeholder="Email" required>
+                                <input type="password" name="password" placeholder="Password" required>
+                                <div class="button-group">
+                                    <button type="submit">Войти</button>
+                                    <a href="/register" class="register-btn">Регистрация</a>
+                                </div>
+                            </form>
+                        </div>
+                    {{else}}
+                        <div class="user-box">
+                            <p>С наступающим, {{.Username}}!</p>
+                            <a href="/create-post">Создать огонёк</a>
+                            <a href="/profile?user_id={{.UserID}}">Профиль</a>
+                            <a href="/logout">Выход</a>
+                        </div>
+                    {{end}}
+                    <div class="countdown-card">
+                        <h3>Community Countdown</h3>
+                        <p>Новый год уже рядом:</p>
+                        <strong id="mini-countdown">00d • 00h • 00m • 00s</strong>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>© 2026 Polar Lights Forum • share the glow</p>
+        </footer>
+    </div>
+</body>
+</html>
+

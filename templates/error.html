@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Code}} — Ошибка</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: rgba(8,14,46,0.95);
+            color: rgba(255,255,255,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: rgba(8,14,46,0.8);
+            padding: 40px 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        h1 {
+            font-size: 4rem;
+            color: #ff5c5c;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        a {
+            color: #00fff7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{.Code}}</h1>
+        <p>{{.Message}}</p>
+        <a href="/">Вернуться на главную</a>
+    </div>
+</body>
+</html>

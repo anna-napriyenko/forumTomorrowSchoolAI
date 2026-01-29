@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Polar Lights Forum 2026</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <script>
+        window.userRole = "{{.Role}}";
+    </script>
+    <script src="/static/script.js" defer></script>
+</head>
+<body class="aurora-body">
+    <div class="site-container">
+        <header class="aurora-header">
+            <div class="header-container">
+                <div class="header-top">
+                    <a href="/" class="logo">
+                        <img src="/static/images/logo.png" alt="Polar Lights Forum 2026">
+                        <div class="logo-text">
+                            <span>Polar Lights</span>
+                            <small>New Year 2026</small>
+                        </div>
+                    </a>
+                    <div class="categories">
+                        <a href="/?category=news" class="category-btn">Polar News</a>
+                        <a href="/?category=life" class="category-btn">Traditions & Hearth</a>
+                        <a href="/?category=auto" class="category-btn">Winter Travel</a>
+                        <a href="/?category=creative" class="category-btn">DIY Décor</a>
+                        <a href="/?category=gadgets" class="category-btn">Gift Gadgets</a>
+                        <a href="/?category=science" class="category-btn">Snow Science</a>
+                        <a href="/?category=games" class="category-btn">Party Games</a>
+                        <a href="/?category=other" class="category-btn">Wish Wall</a>
+                    </div>
+                    <div class="countdown-panel">
+                        <p>до Нового года</p>
+                        <div id="countdown-timer" class="countdown-timer">00d • 00h • 00m • 00s</div>
+                    </div>
+                </div>
+                <div class="hero">
+                    <div class="hero-copy">
+                        <h1>Зажги Новый год 2026</h1>
+                        <p>Делись планами, резолюциями и историями зимних чудес — форум превратился в фестиваль северного сияния.</p>
+                        <a href="{{if .IsAuthenticated}}/create-post{{else}}/register{{end}}" class="hero-cta">
+                            {{if .IsAuthenticated}}Создать желание{{else}}Присоединиться к огонькам{{end}}
+                        </a>
+                    </div>
+                    <img src="/static/images/aurora-banner.png" alt="Aurora illustration" class="hero-image">
+                </div>
+            </div>
+        </header>
+        <div class="filters">
+            <a href="/?filter=new" class="{{if eq .Filter "new"}}active{{end}}">Fresh Sparks</a>
+            <a href="/?filter=best" class="{{if eq .Filter "best"}}active{{end}}">Firework Hits</a>
+            {{if .IsAuthenticated}}
+                <a href="/?filter=my" class="{{if eq .Filter "my"}}active{{end}}">My Rituals</a>
+                <a href="/?filter=liked" class="{{if eq .Filter "liked"}}active{{end}}">Sparkles I Loved</a>
+                <a href="/?filter=commented" class="{{if eq .Filter "commented"}}active{{end}}">Chats I Warmed</a>
+            {{end}}
+        </div>
+        <main>
+            <div class="main-container">
+                <section class="left-column">
+                    <section class="posts">
+                        {{if eq (len .Posts) 0}}
+                            <p class="no-posts">Пока нет огоньков. Стань первым и поделись зимней историей!</p>
+                        {{else}}
+                            {{range .Posts}}
+                                <a href="/post?post_id={{.ID}}" class="post-card-link">
+                                    <article class="post-card" id="post-{{.ID}}">
+                                        <div class="post-header">
+                                            {{if .ImageURL}}
+                                                <img src="{{.ImageURL}}" alt="Post image" class="post-image">
+                                            {{else}}
+                                                <div class="post-image" style="display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.05);color:var(--accent);font-weight:600;">2026</div>
+                                            {{end}}
+                                            <div class="post-info">
+                                                <div class="post-badge">
+                                                    ✨
+                                                    {{if eq .Category "news"}}Polar News{{else if eq .Category "life"}}Traditions & Hearth{{else if eq .Category "auto"}}Winter Travel{{else if eq .Category "creative"}}DIY Décor{{else if eq .Category "gadgets"}}Gift Gadgets{{else if eq .Category "science"}}Snow Science{{else if eq .Category "games"}}Party Games{{else}}Wish Wall{{end}}
+                                                </div>
+                                                <h3>{{.Title}}</h3>
+                                                <div class="post-meta">
+                                                    <span>{{.CreatedAtStr}}</span>
+                                                    <span>by <a href="/profile?user_id={{.UserID}}">{{.Username}}</a></span>
+                                                </div>
+                                                <div class="post-metrics">
+                                                    <span id="likes-{{.ID}}">❤️ {{.Likes}}</span>
+                                                    <span id="dislikes-{{.ID}}">❄️ {{.Dislikes}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </a>
+                            {{end}}
+                        {{end}}
+                    </section>
+                </section>
+                <section class="right-column">
+                    {{if not .IsAuthenticated}}
+                        <div class="login-box">
+                            <h3>Войти в Polar Lights</h3>
+                            <p>Поделитесь своими желаниями и поддержите чужие.</p>
+                            {{if .ErrorMessage}}
+                                <p class="message">{{.ErrorMessage}}</p>
+                            {{end}}
+                            {{if .Message}}
+                                <div class="message">{{.Message}}</div>
+                            {{end}}
+                            <form method="POST" action="/login">
+                                <input type="email" name="email" placeholder="Email" required>
+                                <input type="password" name="password" placeholder="Password" required>
+                                <div class="button-group">
+                                    <button type="submit">Войти</button>
+                                    <a href="/register" class="register-btn">Регистрация</a>
+                                </div>
+                            </form>
+                        </div>
+                    {{else}}
+                        <div class="user-box">
+                            <p>С наступающим, {{.Username}}!</p>
+                            <a href="/create-post">Создать огонёк</a>
+                            <a href="/profile?user_id={{.UserID}}">Профиль</a>
+                            <a href="/logout">Выход</a>
+                        </div>
+                    {{end}}
+                    <div class="resolution-card">
+                        <h3>Идеи для желаний</h3>
+                        <p>• Запланируйте путешествие под северным сиянием.<br>
+                           • Создайте свою традицию 1 января.<br>
+                           • Поделитесь рецептом согревающего напитка.<br>
+                           • Расскажите, как поддерживаете друзей зимой.</p>
+                    </div>
+                    <div class="countdown-card">
+                        <h3>Community Countdown</h3>
+                        <p>Мы считаем вместе:</p>
+                        <strong id="mini-countdown">00d • 00h • 00m • 00s</strong>
+                    </div>
+                    <div class="ad-box">
+                        <img src="/static/images/lanterns.png" alt="Wish Wall illustration" class="ad-image">
+                        <p>Каждая история — фонарик на нашей стене желаний. Делитесь, вдохновляйтесь и вышите своё сияние!</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>© 2026 Polar Lights Forum • share the glow</p>
+        </footer>
+    </div>
+</body>
+</html>
+

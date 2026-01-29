@@ -1,0 +1,139 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: var(--frost);
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+select {
+    min-height: 140px;
+}
+
+button,
+.register-btn,
+.back-btn,
+.edit-btn,
+.delete-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+button,
+.register-btn {
+    background: linear-gradient(120deg, var(--aurora-cyan), var(--aurora-magenta));
+    color: #03071e;
+}
+
+button:hover,
+.register-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(242, 84, 212, 0.35);
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--frost);
+}
+
+.edit-btn {
+    background: rgba(54, 241, 205, 0.2);
+    color: var(--frost);
+}
+
+.delete-btn {
+    background: rgba(255, 107, 129, 0.25);
+    color: var(--danger);
+}
+
+.vote-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.vote-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--frost);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+}
+
+.vote-btn.liked {
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.vote-btn.disliked {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.create-post-box,
+.edit-post-box,
+.register-box {
+    background: rgba(8, 14, 46, 0.85);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.create-post-box textarea,
+.edit-post-box textarea {
+    min-height: 260px;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.message {
+    color: var(--danger);
+    text-align: center;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255, 107, 129, 0.1);
+    border: 1px solid rgba(255, 107, 129, 0.3);
+}
+
+.notification {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: rgba(8, 14, 46, 0.95);
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 14px 24px;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
